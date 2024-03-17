@@ -14,27 +14,30 @@ datasource db {
 }
 
 model User {
-  id          String    @id @default(cuid())
-  firstname   String
-  lastname    String?
-  email       String    @unique
-  password    String
-  role        String    @default("pengajar")
-  urlprofile  String    @default("https://tl.vhv.rs/dpng/s/279-2798630_avatar-generic-avatar-hd-png-download.png")
-  lesson      Lesson[]  
-  exercise    Exercise[]  
-  exam        Exam[]  
-  // materi      Materi[]  
+  id            String    @id @default(cuid())
+  firstname     String
+  lastname      String?
+  email         String    @unique
+  password      String
+  role          String    @default("pengajar")
+  urlprofile    String    @default("https://tl.vhv.rs/dpng/s/541-5413387_log-in-sign-up-micro-environment-diagram-hd.png")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lesson        Lesson[]  
+  exercise      Exercise[]  
+  exam          Exam[]  
+  lessonContent Lesson_Content[] 
 }
 
 model Lesson {
-  id          Int     @id @default(autoincrement())
-  title       String
-  subtitle    String
-  description String  @db.Text
-  image       String
-  user        User    @relation(fields: [userId], references: [id])
-  userId      String  
+  id            Int     @id @default(autoincrement())
+  title         String
+  subtitle      String
+  description   String  @db.Text
+  image         String
+  user          User    @relation(fields: [userId], references: [id])
+  userId        String  
+  lessonContent Lesson_Content[] 
 }
 
 model Exercise {
@@ -55,19 +58,15 @@ model Exam {
   userId      String  
 }
 
-// model Materi {
-//   id          Int     @id @default(autoincrement())
-//   name        String
-//   description String
-//   video       String
-//   user        User    @relation(fields: [userId], references: [id])
-//   userId      String  
-//   level   Level   @relation(fields: [levelId], references: [id])
-//   levelId Int
-// }
-
-// model Level {
-//   id      Int       @id @default(autoincrement())
-//   name    String
-//   materi  Materi[]
-// }
+model Lesson_Content {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String  @db.Text
+  image       String
+  hijaiyah    String
+  media       String
+  user        User    @relation(fields: [userId], references: [id])
+  userId      String  
+  lesson      Lesson  @relation(fields: [lessonId], references: [id])
+  lessonId    Int 
+}

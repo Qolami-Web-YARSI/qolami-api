@@ -4,7 +4,9 @@ const { authenticateToken } = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
-router.post("/", authenticateToken, async (req, res) => {
+router.use(authenticateToken);
+
+router.post("/", async (req, res) => {
   try {
     const newExamData = req.body;
     const userId = req.user.id;
@@ -20,7 +22,7 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/", authenticateToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const exams = await getAllExams();
 
@@ -33,7 +35,7 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/:id", authenticateToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const examId = parseInt(req.params.id);
     const exam = await getExamById(examId);
@@ -47,7 +49,7 @@ router.get("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-router.put("/:id", authenticateToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const examId = parseInt(req.params.id);
     const examData = req.body;
@@ -62,7 +64,7 @@ router.put("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-router.delete("/:id", authenticateToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const examId = parseInt(req.params.id);
 
