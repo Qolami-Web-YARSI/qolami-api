@@ -70,3 +70,16 @@ model Lesson_Content {
   lesson      Lesson  @relation(fields: [lessonId], references: [id])
   lessonId    Int 
 }
+
+// model Exercise_Content {
+//   id          Int     @id @default(autoincrement())
+//   title       String
+//   description String  @db.Text
+//   image       String
+//   hijaiyah    String
+//   media       String
+//   user        User    @relation(fields: [userId], references: [id])
+//   userId      String  
+//   lesson      Lesson  @relation(fields: [lessonId], references: [id])
+//   lessonId    Int 
+// }
