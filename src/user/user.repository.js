@@ -1,13 +1,13 @@
 const prisma = require("../db/connection");
 const bcrypt = require("bcrypt");
 
-const insertUser = async (userData) => {
-  const hashedPassword = await bcrypt.hash(userData.password, 5);
+const insertUser = async (newUserData) => {
+  const hashedPassword = await bcrypt.hash(newUserData.password, 5);
   const user = await prisma.user.create({
     data: {
-      firstname: userData.firstname,
-      lastname: userData.lastname,
-      email: userData.email,
+      firstname: newUserData.firstname,
+      lastname: newUserData.lastname,
+      email: newUserData.email,
       password: hashedPassword,
     },
   });

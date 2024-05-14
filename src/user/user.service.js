@@ -15,7 +15,6 @@ const registerSchema = yup.object().shape({
     .required()
     .matches(/^[a-z0-9_.]+@[a-z0-9]+.(com|org|net)$/, "Invalid email format."),
   password: yup.string().required().min(8, "Password must be at least 8 characters."),
-  role: yup.string().required(),
 });
 
 const registerUser = async (newUserData) => {
@@ -59,7 +58,6 @@ const loginUser = async (email, password) => {
       firstname: user.firstname,
       lastname: user.lastname,
       email: user.email,
-      role: user.role,
     };
   } else {
     throw new Error("Invalid password.");

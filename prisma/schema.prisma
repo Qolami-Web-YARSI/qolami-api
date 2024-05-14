@@ -14,72 +14,36 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  firstname     String
-  lastname      String?
-  email         String    @unique
-  password      String
-  role          String    @default("pengajar")
-  urlprofile    String    @default("https://tl.vhv.rs/dpng/s/541-5413387_log-in-sign-up-micro-environment-diagram-hd.png")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  lesson        Lesson[]  
-  exercise      Exercise[]  
-  exam          Exam[]  
-  lessonContent Lesson_Content[] 
+  id          String    @id @default(cuid())
+  firstName   String
+  lastName    String?
+  email       String    @unique
+  password    String
+  profileUrl  String    @default("https://tl.vhv.rs/dpng/s/541-5413387_log-in-sign-up-micro-environment-diagram-hd.png")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
-model Lesson {
-  id            Int     @id @default(autoincrement())
-  title         String
-  subtitle      String
-  description   String  @db.Text
-  image         String
-  user          User    @relation(fields: [userId], references: [id])
-  userId        String  
-  lessonContent Lesson_Content[] 
+model Lesson_One {
+  id                  Int     @id @default(autoincrement())
+  hurufHijaiyah       String
+  colorCard           String
+  hoverCard           String
+  audio               String
 }
 
-model Exercise {
-  id          Int     @id @default(autoincrement())
-  title       String
-  subtitle    String
-  image       String
-  user        User    @relation(fields: [userId], references: [id])
-  userId      String  
+model Lesson_Two {
+  id                        Int     @id @default(autoincrement())
+  hurufBerharakatFathahName String
+  hurufBerharakatFathah     String
+  colorCard                 String
+  hoverCard                 String
+  lessons                   Lesson_Detail_Two[]                
 }
 
-model Exam {
-  id          Int     @id @default(autoincrement())
-  title       String
-  subtitle    String
-  image       String
-  user        User    @relation(fields: [userId], references: [id])
-  userId      String  
+model Lesson_Detail_Two {
+  id          Int         @id @default(autoincrement())
+  video       String
+  lessonTwo   Lesson_Two  @relation(fields: [lessonTwoId], references: [id])
+  lessonTwoId    Int
 }
-
-model Lesson_Content {
-  id          Int     @id @default(autoincrement())
-  title       String
-  description String  @db.Text
-  image       String
-  hijaiyah    String
-  media       String
-  user        User    @relation(fields: [userId], references: [id])
-  userId      String  
-  lesson      Lesson  @relation(fields: [lessonId], references: [id])
-  lessonId    Int 
-}
-
-// model Exercise_Content {
-//   id          Int     @id @default(autoincrement())
-//   title       String
-//   description String  @db.Text
-//   image       String
-//   hijaiyah    String
-//   media       String
-//   user        User    @relation(fields: [userId], references: [id])
-//   userId      String  
-//   lesson      Lesson  @relation(fields: [lessonId], references: [id])
-//   lessonId    Int 
-// }
