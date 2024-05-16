@@ -4,6 +4,7 @@ const cors = require("cors");
 const userController = require("./user/user.controller");
 const lessonOneController = require("./lesson_one/lesson_one.controller");
 const lessonTwoController = require("./lesson_two/lesson_two.controller");
+const lessonTwoContentController = require("./lesson_two_content/lesson_two_content.controller");
 
 dotenv.config();
 
@@ -21,8 +22,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", userController);
-app.use("/lesson-one", lessonOneController);
-app.use("/lesson-two", lessonTwoController);
+app.use("/lessons-one", lessonOneController);
+app.use("/lessons-two", lessonTwoController);
+app.use("/lessons-two", lessonTwoContentController);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

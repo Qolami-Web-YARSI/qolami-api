@@ -1,5 +1,5 @@
 const express = require("express");
-const { createLessonTwo, getAllLessonTwo, getLessonTwoById } = require("./lesson_two.service");
+const { createLessonTwo, getAllLessonsTwo, getLessonTwoById } = require("./lesson_two.service");
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const lessonsTwo = await getAllLessonTwo();
+    const lessonsTwo = await getAllLessonsTwo();
 
     res.status(200).send({
       data: lessonsTwo,

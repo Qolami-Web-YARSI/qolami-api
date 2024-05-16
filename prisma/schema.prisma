@@ -25,25 +25,26 @@ model User {
 }
 
 model Lesson_One {
-  id                  Int     @id @default(autoincrement())
-  hurufHijaiyah       String
-  colorCard           String
-  hoverCard           String
-  audio               String
+  id            Int     @id @default(autoincrement())
+  hurufHijaiyah String
+  colorCard     String
+  hoverCard     String
+  audio         String
 }
 
 model Lesson_Two {
-  id                        Int     @id @default(autoincrement())
-  hurufBerharakatFathahName String
-  hurufBerharakatFathah     String
-  colorCard                 String
-  hoverCard                 String
-  lessons                   Lesson_Detail_Two[]                
+  id                    Int     @id @default(autoincrement())
+  hurufBerharakatFathah String
+  colorCard             String
+  hoverCard             String
+  lessons               Lesson_Two_Content[]             
 }
 
-model Lesson_Detail_Two {
-  id          Int         @id @default(autoincrement())
-  video       String
-  lessonTwo   Lesson_Two  @relation(fields: [lessonTwoId], references: [id])
-  lessonTwoId    Int
+model Lesson_Two_Content {
+  id                        Int         @id @default(autoincrement())
+  hurufBerharakatFathahName String
+  image                     String
+  video                     String
+  lessonTwo                 Lesson_Two  @relation(fields: [lessonTwoId], references: [id])
+  lessonTwoId               Int
 }

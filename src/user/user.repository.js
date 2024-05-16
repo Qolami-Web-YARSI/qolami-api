@@ -5,8 +5,8 @@ const insertUser = async (newUserData) => {
   const hashedPassword = await bcrypt.hash(newUserData.password, 5);
   const user = await prisma.user.create({
     data: {
-      firstname: newUserData.firstname,
-      lastname: newUserData.lastname,
+      firstName: newUserData.firstName,
+      lastName: newUserData.lastName,
       email: newUserData.email,
       password: hashedPassword,
     },
@@ -59,9 +59,9 @@ const editUser = async (id, userData) => {
       id,
     },
     data: {
-      firstname: userData.firstname,
-      lastname: userData.lastname,
-      urlprofile: userData.urlprofile,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      profileUrl: userData.profileUrl,
     },
   });
 

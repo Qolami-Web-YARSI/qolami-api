@@ -13,7 +13,7 @@ const insertLessonOne = async (newLessonOneData) => {
   return lessonOne;
 };
 
-const findLessonOne = async () => {
+const findLessonsOne = async () => {
   const lessonsOne = await prisma.lesson_One.findMany();
 
   return lessonsOne;
@@ -31,6 +31,6 @@ const findLessonOneById = async (id) => {
 
 module.exports = {
   insertLessonOne,
-  findLessonOne,
+  findLessonsOne,
   findLessonOneById,
 };

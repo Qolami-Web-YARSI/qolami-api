@@ -5,11 +5,8 @@ const { v4: uuidv4 } = require("uuid");
 const { insertUser, findUserByEmail, resetPasswordUserByEmail, findUserById, updatePasswordUser, editUser } = require("./user.repository");
 
 const registerSchema = yup.object().shape({
-  firstname: yup
-    .string()
-    .required()
-    .matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
-  lastname: yup.string().matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
+  firstName: yup.string().matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
+  lastName: yup.string().matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
   email: yup
     .string()
     .required()

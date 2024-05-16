@@ -1,7 +1,7 @@
-const { insertLessonTwo, findLessonTwo, findLessonTwoById } = require("./lesson_two.repository");
+const { insertLessonTwo, findLessonsTwo, findLessonTwoById } = require("./lesson_two.repository");
 
 const createLessonTwo = async (newLessonTwoData) => {
-  if (!newLessonTwoData.hurufBerharakatFathahName || !newLessonTwoData.hurufBerharakatFathah || !newLessonTwoData.colorCard || !newLessonTwoData.hoverCard) {
+  if (!newLessonTwoData.hurufBerharakatFathah || !newLessonTwoData.colorCard || !newLessonTwoData.hoverCard) {
     throw new Error("Lesson Two not found.");
   }
 
@@ -10,8 +10,8 @@ const createLessonTwo = async (newLessonTwoData) => {
   return lessonTwo;
 };
 
-const getAllLessonTwo = async () => {
-  const lessonsTwo = await findLessonTwo();
+const getAllLessonsTwo = async () => {
+  const lessonsTwo = await findLessonsTwo();
 
   return lessonsTwo;
 };
@@ -28,6 +28,6 @@ const getLessonTwoById = async (id) => {
 
 module.exports = {
   createLessonTwo,
-  getAllLessonTwo,
+  getAllLessonsTwo,
   getLessonTwoById,
 };

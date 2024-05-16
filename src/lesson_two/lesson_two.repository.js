@@ -3,7 +3,6 @@ const prisma = require("../db/connection");
 const insertLessonTwo = async (newLessonTwoData) => {
   const lessonTwo = await prisma.lesson_Two.create({
     data: {
-      hurufBerharakatFathahName: newLessonTwoData.hurufBerharakatFathahName,
       hurufBerharakatFathah: newLessonTwoData.hurufBerharakatFathah,
       colorCard: newLessonTwoData.colorCard,
       hoverCard: newLessonTwoData.hoverCard,
@@ -13,10 +12,10 @@ const insertLessonTwo = async (newLessonTwoData) => {
   return lessonTwo;
 };
 
-const findLessonTwo = async () => {
-  const lessonTwo = await prisma.lesson_Two.findMany();
+const findLessonsTwo = async () => {
+  const lessonsTwo = await prisma.lesson_Two.findMany();
 
-  return lessonTwo;
+  return lessonsTwo;
 };
 
 const findLessonTwoById = async (id) => {
@@ -31,6 +30,6 @@ const findLessonTwoById = async (id) => {
 
 module.exports = {
   insertLessonTwo,
-  findLessonTwo,
+  findLessonsTwo,
   findLessonTwoById,
 };
