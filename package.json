@@ -8,7 +8,7 @@
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Angga Aditya Putra Pratama",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.10.2",

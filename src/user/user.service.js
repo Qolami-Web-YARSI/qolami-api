@@ -2,7 +2,7 @@ const yup = require("yup");
 const bcrypt = require("bcrypt");
 const { sendEmail } = require("../utils/email.utils");
 const { v4: uuidv4 } = require("uuid");
-const { insertUser, findUserByEmail, resetPasswordUserByEmail, findUserById, updatePasswordUser, editUser } = require("./user.repository");
+const { insertUser, findUserByEmail, resetPasswordUserByEmail, findUsers, findUserById, updatePasswordUser, editUser } = require("./user.repository");
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
@@ -86,6 +86,12 @@ const forgotPasswordUser = async (email) => {
   await sendEmail(email, subject, text);
 };
 
+const getAllUsers = async () => {
+  const users = await findUsers();
+
+  return users;
+};
+
 const getUserById = async (id) => {
   const user = await findUserById(id);
 
@@ -136,6 +142,7 @@ module.exports = {
   registerUser,
   loginUser,
   forgotPasswordUser,
+  getAllUsers,
   getUserById,
   changePasswordUser,
   editUserById,

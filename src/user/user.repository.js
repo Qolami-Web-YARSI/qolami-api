@@ -39,6 +39,12 @@ const resetPasswordUserByEmail = async (email, newPassword) => {
   return user;
 };
 
+const findUsers = async () => {
+  const users = await prisma.user.findMany();
+
+  return users;
+};
+
 const findUserById = async (id) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -72,6 +78,7 @@ module.exports = {
   insertUser,
   findUserByEmail,
   resetPasswordUserByEmail,
+  findUsers,
   findUserById,
   updatePasswordUser,
   editUser,

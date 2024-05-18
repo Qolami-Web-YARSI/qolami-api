@@ -1,10 +1,10 @@
 const express = require("express");
-const { registerUser, loginUser, forgotPasswordUser, getUserById, changePasswordUser, editUserById } = require("./user.service");
+const { registerUser, loginUser, forgotPasswordUser, getAllUsers, getUserById, changePasswordUser, editUserById } = require("./user.service");
 const { generateAccessToken, generateRefreshToken, authenticateToken } = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
-router.post("/users/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const newUserData = req.body;
     const user = await registerUser(newUserData);
@@ -18,7 +18,7 @@ router.post("/users/register", async (req, res) => {
   }
 });
 
-router.post("/users/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await loginUser(email, password);
@@ -39,7 +39,7 @@ router.post("/users/login", async (req, res) => {
   }
 });
 
-router.post("/users/forgot-password", async (req, res) => {
+router.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
     const user = await forgotPasswordUser(email);
@@ -53,7 +53,20 @@ router.post("/users/forgot-password", async (req, res) => {
   }
 });
 
-router.get("/users/:id", authenticateToken, async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
+  try {
+    const user = await getAllUsers();
+
+    res.status(200).send({
+      data: user,
+      message: "Users retrieved successfully.",
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+router.get("/:id", authenticateToken, async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await getUserById(userId);
@@ -67,7 +80,7 @@ router.get("/users/:id", authenticateToken, async (req, res) => {
   }
 });
 
-router.post("/users/profile/change-password", authenticateToken, async (req, res) => {
+router.post("/settings/change-password", authenticateToken, async (req, res) => {
   try {
     const { id, oldPassword, newPassword, confirmNewPassword } = req.body;
     const user = await changePasswordUser(id, oldPassword, newPassword, confirmNewPassword);
@@ -81,15 +94,10 @@ router.post("/users/profile/change-password", authenticateToken, async (req, res
   }
 });
 
-router.put("/users/profile/edit/:id", authenticateToken, async (req, res) => {
+router.patch("/settings/profile/:id", authenticateToken, async (req, res) => {
   try {
     const userId = req.params.id;
     const userData = req.body;
-
-    if (!(userData.firstname && userData.lastname && userData.urlprofile)) {
-      return res.status(400).send("Some fields are missing.");
-    }
-
     const user = await editUserById(userId, userData);
 
     res.status(200).send({

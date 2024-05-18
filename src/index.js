@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/", userController);
+app.use("/users", userController);
 app.use("/lessons-one", lessonOneController);
 app.use("/lessons-two", lessonTwoController);
 app.use("/lessons-two", lessonTwoContentController);
