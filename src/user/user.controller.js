@@ -1,7 +1,7 @@
 const express = require("express");
 const { registerUser, loginUser, forgotPasswordUser, getAllUsers, getUserById, changePasswordUser, editUserById } = require("./user.service");
 const { generateAccessToken, generateRefreshToken, authenticateToken } = require("../middleware/auth.middleware");
-const profileUpload = require("../middleware/multer.middleware");
+const profileUpload = require("../middleware/upload.middleware");
 
 const router = express.Router();
 
