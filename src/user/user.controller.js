@@ -1,6 +1,7 @@
 const express = require("express");
 const { registerUser, loginUser, forgotPasswordUser, getAllUsers, getUserById, changePasswordUser, editUserById } = require("./user.service");
 const { generateAccessToken, generateRefreshToken, authenticateToken } = require("../middleware/auth.middleware");
+const profileUpload = require("../middleware/multer.middleware");
 
 const router = express.Router();
 
@@ -94,7 +95,7 @@ router.post("/settings/change-password", authenticateToken, async (req, res) => 
   }
 });
 
-router.patch("/settings/profile/:id", authenticateToken, async (req, res) => {
+router.patch("/settings/profile/:id", authenticateToken, profileUpload, async (req, res) => {
   try {
     const userId = req.params.id;
     const userData = req.body;
