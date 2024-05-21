@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path");
 const userController = require("./user/user.controller");
 const lessonOneController = require("./lesson_one/lesson_one.controller");
 const lessonTwoController = require("./lesson_two/lesson_two.controller");
@@ -13,6 +14,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/", (req, res) => {
   res.send({
