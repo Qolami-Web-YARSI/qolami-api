@@ -4,8 +4,7 @@ const insertActivity = async (newActivityData) => {
   const activity = await prisma.activity.create({
     data: {
       activityName: newActivityData.activityName,
-      dateStarted: newActivityData.dateStarted,
-      dateFinished: newActivityData.dateFinished,
+      date: newActivityData.date,
       value: newActivityData.value,
       passed: newActivityData.passed,
     },

@@ -1,7 +1,7 @@
 const { insertActivity, findActivies } = require("./activity.repository");
 
 const createActivity = async (newActivityData) => {
-  if (!newActivityData.activityName || !newActivityData.dateStarted || !newActivityData.dateFinished || !newActivityData.value || !newActivityData.passed) {
+  if (!newActivityData.activityName || !newActivityData.date || !newActivityData.value || !newActivityData.passed) {
     throw new Error("Activity not found.");
   }
 
