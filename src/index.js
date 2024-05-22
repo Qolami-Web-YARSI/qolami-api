@@ -6,6 +6,7 @@ const userController = require("./user/user.controller");
 const lessonOneController = require("./lesson_one/lesson_one.controller");
 const lessonTwoController = require("./lesson_two/lesson_two.controller");
 const lessonTwoContentController = require("./lesson_two_content/lesson_two_content.controller");
+const activityController = require("./activity/activity.controller");
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use("/users", userController);
 app.use("/lessons-one", lessonOneController);
 app.use("/lessons-two", lessonTwoController);
 app.use("/lessons-two", lessonTwoContentController);
+app.use("/activity", activityController);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
