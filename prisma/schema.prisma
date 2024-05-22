@@ -50,10 +50,9 @@ model Lesson_Two_Content {
 }
 
 model Activity {
-  id           Int       @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   activityName String 
-  dateStarted  DateTime
-  dateFinished DateTime
+  date         DateTime
   value        Int
   passed       String
 }
