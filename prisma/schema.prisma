@@ -54,5 +54,5 @@ model Activity {
   activityName String 
   date         DateTime
   value        Int
-  passed       String
+  status       String
 }

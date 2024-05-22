@@ -6,7 +6,7 @@ const insertActivity = async (newActivityData) => {
       activityName: newActivityData.activityName,
       date: newActivityData.date,
       value: newActivityData.value,
-      passed: newActivityData.passed,
+      status: newActivityData.status,
     },
   });
 
