@@ -5,6 +5,7 @@ const path = require("path");
 const userController = require("./user/user.controller");
 const lessonOneController = require("./lesson_one/lesson_one.controller");
 const lessonTwoController = require("./lesson_two/lesson_two.controller");
+const lessonOneContentController = require("./lesson_one_content/lesson_one_content.controller");
 const lessonTwoContentController = require("./lesson_two_content/lesson_two_content.controller");
 const activityController = require("./activity/activity.controller");
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", userController);
 app.use("/lessons-one", lessonOneController);
+app.use("/lessons-one", lessonOneContentController);
 app.use("/lessons-two", lessonTwoController);
 app.use("/lessons-two", lessonTwoContentController);
 app.use("/activity", activityController);
