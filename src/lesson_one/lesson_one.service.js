@@ -1,7 +1,7 @@
 const { insertLessonOne, findLessonsOne, findLessonOneById } = require("./lesson_one.repository");
 
 const createLessonOne = async (newLessonOneData) => {
-  if (!newLessonOneData.hurufHijaiyahImage || !newLessonOneData.colorCard || !newLessonOneData.hoverCard || !newLessonOneData.audio) {
+  if (!newLessonOneData.hurufHijaiyahImage || !newLessonOneData.colorCard || !newLessonOneData.hoverCard) {
     throw new Error("Lesson One not found.");
   }
 

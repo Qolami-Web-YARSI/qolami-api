@@ -29,7 +29,7 @@ model Lesson_One {
   hurufHijaiyah String
   colorCard     String
   hoverCard     String
-  audio         String
+  lessons       Lesson_One_Content[]  
 }
 
 model Lesson_Two {
@@ -38,6 +38,15 @@ model Lesson_Two {
   colorCard             String
   hoverCard             String
   lessons               Lesson_Two_Content[]             
+}
+
+model Lesson_One_Content {
+  id                Int         @id @default(autoincrement())
+  hurufHijaiyahName String
+  image             String
+  video             String
+  lessonOne         Lesson_One @relation(fields: [lessonOneId], references: [id])
+  lessonOneId       Int
 }
 
 model Lesson_Two_Content {

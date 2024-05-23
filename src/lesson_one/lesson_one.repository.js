@@ -6,7 +6,6 @@ const insertLessonOne = async (newLessonOneData) => {
       hurufHijaiyah: newLessonOneData.hurufHijaiyah,
       colorCard: newLessonOneData.colorCard,
       hoverCard: newLessonOneData.hoverCard,
-      audio: newLessonOneData.audio,
     },
   });
 
