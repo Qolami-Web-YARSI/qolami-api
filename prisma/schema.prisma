@@ -41,21 +41,21 @@ model Lesson_Two {
 }
 
 model Lesson_One_Content {
-  id                Int         @id @default(autoincrement())
-  hurufHijaiyahName String
-  image             String
-  video             String
-  lessonOne         Lesson_One @relation(fields: [lessonOneId], references: [id])
-  lessonOneId       Int
+  id          Int        @id @default(autoincrement())
+  hurufName   String
+  image       String
+  video       String
+  lessonOne   Lesson_One @relation(fields: [lessonOneId], references: [id])
+  lessonOneId Int
 }
 
 model Lesson_Two_Content {
-  id                        Int         @id @default(autoincrement())
-  hurufBerharakatFathahName String
-  image                     String
-  video                     String
-  lessonTwo                 Lesson_Two  @relation(fields: [lessonTwoId], references: [id])
-  lessonTwoId               Int
+  id          Int         @id @default(autoincrement())
+  hurufName   String
+  image       String
+  video       String
+  lessonTwo   Lesson_Two  @relation(fields: [lessonTwoId], references: [id])
+  lessonTwoId Int
 }
 
 model Activity {
