@@ -7,10 +7,7 @@ const { insertUser, findUserByEmail, resetPasswordUserByEmail, findUsers, findUs
 const registerSchema = yup.object().shape({
   firstName: yup.string().matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
   lastName: yup.string().matches(/^[a-zA-Z ]*$/, "Fullname can only contain letters and spaces."),
-  email: yup
-    .string()
-    .required()
-    .matches(/^[a-z0-9_.]+@[a-z0-9]+.(com|org|net)$/, "Invalid email format."),
+  email: yup.string().required().email("Invalid email format."),
   password: yup.string().required().min(8, "Password must be at least 8 characters."),
 });
 
@@ -28,10 +25,7 @@ const registerUser = async (newUserData) => {
 };
 
 const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .required()
-    .matches(/^[a-z0-9_.]+@[a-z0-9]+.(com|org|net)$/, "Invalid email format."),
+  email: yup.string().required().email("Invalid email format."),
   password: yup.string().required().min(8, "Password must be at least 8 characters."),
 });
 
