@@ -61,7 +61,7 @@ model Lesson_Two_Content {
 model Activity {
   id           Int      @id @default(autoincrement())
   activityName String 
-  date         DateTime
+  date         String
   value        Int
   status       String
 }

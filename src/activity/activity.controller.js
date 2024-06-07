@@ -1,9 +1,10 @@
 const express = require("express");
 const { createActivity, getAllActivities } = require("./activity.service");
+const { generateAccessToken, generateRefreshToken, authenticateToken } = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   try {
     const newActivityData = req.body;
     const activity = await createActivity(newActivityData);
@@ -17,7 +18,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const activities = await getAllActivities();
 
