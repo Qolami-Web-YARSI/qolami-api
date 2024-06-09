@@ -1,7 +1,6 @@
 const express = require("express");
 const { createActivity, getAllActivities } = require("./activity.service");
-const { generateAccessToken, generateRefreshToken, authenticateToken } = require("../middleware/auth.middleware");
-const { user } = require("../db/connection");
+const { authenticateToken } = require("../middleware/auth.middleware");
 
 const router = express.Router();
 

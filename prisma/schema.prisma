@@ -14,19 +14,19 @@ datasource db {
 }
 
 model User {
-  id          String    @id @default(cuid())
+  id          String      @id @default(cuid())
   firstName   String
   lastName    String?
-  email       String    @unique
+  email       String      @unique
   password    String
-  profileUrl  String    @default("https://tl.vhv.rs/dpng/s/541-5413387_log-in-sign-up-micro-environment-diagram-hd.png")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  activity    Activity[] 
+  profileUrl  String      @default("https://tl.vhv.rs/dpng/s/541-5413387_log-in-sign-up-micro-environment-diagram-hd.png")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  activity    Activity[]  
 }
 
 model Lesson_One {
-  id            Int     @id @default(autoincrement())
+  id            Int                   @id @default(autoincrement())
   hurufHijaiyah String
   colorCard     String
   hoverCard     String
@@ -34,11 +34,11 @@ model Lesson_One {
 }
 
 model Lesson_Two {
-  id                    Int     @id @default(autoincrement())
+  id                    Int                   @id @default(autoincrement())
   hurufBerharakatFathah String
   colorCard             String
   hoverCard             String
-  lessons               Lesson_Two_Content[]             
+  lessons               Lesson_Two_Content[]               
 }
 
 model Lesson_One_Content {
