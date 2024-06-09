@@ -22,6 +22,7 @@ model User {
   profileUrl  String    @default("https://tl.vhv.rs/dpng/s/541-5413387_log-in-sign-up-micro-environment-diagram-hd.png")
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  activity    Activity[] 
 }
 
 model Lesson_One {
@@ -41,11 +42,11 @@ model Lesson_Two {
 }
 
 model Lesson_One_Content {
-  id          Int        @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   hurufName   String
   image       String
   video       String
-  lessonOne   Lesson_One @relation(fields: [lessonOneId], references: [id])
+  lessonOne   Lesson_One  @relation(fields: [lessonOneId], references: [id])
   lessonOneId Int
 }
 
@@ -64,4 +65,6 @@ model Activity {
   date         String
   value        Int
   status       String
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String
 }

@@ -7,14 +7,19 @@ const insertActivity = async (newActivityData) => {
       date: newActivityData.date,
       value: newActivityData.value,
       status: newActivityData.status,
+      userId: newActivityData.userId,
     },
   });
 
   return activity;
 };
 
-const findActivies = async () => {
-  const activities = await prisma.activity.findMany();
+const findActivies = async (userId) => {
+  const activities = await prisma.activity.findMany({
+    where: {
+      userId,
+    },
+  });
 
   return activities;
 };
