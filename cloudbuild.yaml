@@ -3,23 +3,24 @@ steps:
     args:
       - "build"
       - "-t"
-      - "gcr.io/$PROJECT_ID/qolami-api:$COMMIT_SHA"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/qolami-web-artifact/qolami-web-image:$COMMIT_SHA"
       - "."
   - name: gcr.io/cloud-builders/docker
     args:
       - "push"
-      - "gcr.io/$PROJECT_ID/qolami-api:$COMMIT_SHA"
+      - "us-central1-docker.pkg.dev/$PROJECT_ID/qolami-web-artifact/qolami-web-image:$COMMIT_SHA"
   - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: gcloud
     args:
       - "run"
       - "deploy"
-      - "qolami-api"
-      - "--image=gcr.io/$PROJECT_ID/qolami-api:$COMMIT_SHA"
-      - "--region=us-central1"
-      - "--cpu=2"
+      - "qolami-web"
+      - "--image=us-central1-docker.pkg.dev/$PROJECT_ID/qolami-web-artifact/qolami-web-image:$COMMIT_SHA"
+      - "--region=asia-southeast2"
+      - "--cpu=1"
       - "--memory=2048Mi"
       - "--allow-unauthenticated"
-      - "--set-secrets=JWT_SECRET_KEY=jwt_secret_key:latest,DATABASE_URL=database_url:latest,EMAIL_USER=email_user:latest,EMAIL_PASS=email_pass:latest"
+      - "--set-secrets=DATABASE_URL=database_url:latest,JWT_SECRET_KEY=jwt_secret_key:latest,EMAIL_USER=email_user:latest,EMAIL_PASS=email_pass:latest"
 images:
-  - "gcr.io/$PROJECT_ID/qolami-api:$COMMIT_SHA"
-logsBucket: "gs://qolami-web/logs"
+  - "us-central1-docker.pkg.dev/$PROJECT_ID/qolami-web-artifact/qolami-web-image:$COMMIT_SHA"
+logsBucket: "gs://qolami-web-bucket/logs"
