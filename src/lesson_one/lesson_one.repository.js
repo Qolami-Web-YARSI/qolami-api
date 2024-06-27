@@ -1,17 +1,5 @@
 const prisma = require("../db/connection");
 
-const insertLessonOne = async (newLessonOneData) => {
-  const lessonOne = await prisma.lesson_One.create({
-    data: {
-      hurufHijaiyah: newLessonOneData.hurufHijaiyah,
-      colorCard: newLessonOneData.colorCard,
-      hoverCard: newLessonOneData.hoverCard,
-    },
-  });
-
-  return lessonOne;
-};
-
 const findLessonsOne = async () => {
   const lessonsOne = await prisma.lesson_One.findMany();
 
@@ -29,7 +17,6 @@ const findLessonOneById = async (id) => {
 };
 
 module.exports = {
-  insertLessonOne,
   findLessonsOne,
   findLessonOneById,
 };

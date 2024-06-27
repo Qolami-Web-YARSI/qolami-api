@@ -1,21 +1,7 @@
 const express = require("express");
-const { createLessonTwo, getAllLessonsTwo, getLessonTwoById } = require("./lesson_two.service");
+const { getAllLessonsTwo, getLessonTwoById } = require("./lesson_two.service");
 
 const router = express.Router();
-
-router.post("/", async (req, res) => {
-  try {
-    const newLessonTwoData = req.body;
-    const lessonTwo = await createLessonTwo(newLessonTwoData);
-
-    res.status(201).send({
-      data: lessonTwo,
-      message: "Lesson Two created successfully.",
-    });
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
 
 router.get("/", async (req, res) => {
   try {
