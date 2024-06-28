@@ -37,9 +37,13 @@ To use it, follow these steps:
    ```bash
    npx prisma migrate dev
    ```
-7. Start the server:
+7. Generate the Prisma client:
    ```bash
-   npm start
+   npx prisma generate
+   ```
+8. Start the server:
+   ```bash
+   npm run start
    # or
    npm run dev
    ```
